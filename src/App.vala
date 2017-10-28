@@ -9,9 +9,7 @@ class App : Gtk.Application {
    * Instance variables
    */
   private Settings settings;
-  private Gtk.Builder builder;
   public AppWindow win;
-  public Gtk.Window preferences_win;
   public bool preferences_win_shown = false;
   SimpleAction av_quit;
   SimpleAction av_preferences;
@@ -105,12 +103,6 @@ class App : Gtk.Application {
     this.settings = new Settings(Config.id);
     this.dark_theme = this.dark_theme;
 
-    // Create the builder
-    this.builder = new Gtk.Builder.from_resource(Config.path+"gtk/App.ui");
-    var switch_dt = builder.get_object("switchDarkTheme") as Gtk.Switch;
-    switch_dt.set_state(this.dark_theme);
-    switch_dt.state_set.connect((val) => { return this.conf_set_dark_theme(val); });
-
     // Create the main window
     this.win = new AppWindow(this);
     this.win.show_all();
@@ -166,11 +158,21 @@ class App : Gtk.Application {
   private void am_preferences() {
     this.hold();
     if (!preferences_win_shown) {
-      this.preferences_win = this.builder.get_object("winPreferences") as Gtk.Window;
-      this.preferences_win.destroy.connect(() => {preferences_win_shown = false;});
+      Gtk.Window preferences_win;
+      var builder = new Gtk.Builder.from_resource(Config.path+"gtk/App.ui");
+
+      preferences_win = builder.get_object("winPreferences") as Gtk.Dialog;
+      preferences_win.destroy.connect(() => {preferences_win_shown = false;});
+      preferences_win.application = this;
+      preferences_win.modal = true;
+      preferences_win.attached_to = this.win;
       preferences_win_shown = true;
+
+      var switch_dark_theme = builder.get_object("switchDarkTheme") as Gtk.Switch;
+      switch_dark_theme.set_state(this.dark_theme);
+      switch_dark_theme.state_set.connect((val) => { return this.conf_set_dark_theme(val); });
+      preferences_win.show_all();
     }
-    this.preferences_win.show_all();
     this.release();
   }
 

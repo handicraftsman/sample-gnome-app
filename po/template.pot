@@ -2,10 +2,6 @@
 msgid "Sample Application"
 msgstr ""
 
-#: gresource/gtk/AppWindow.ui
-msgid "Hello, World!"
-msgstr ""
-
 #: gresource/gtk/menus.ui
 msgid "Preferences"
 msgstr ""
@@ -24,4 +20,15 @@ msgstr ""
 
 #: src/AppWindow.vala
 msgid "A long description"
+msgstr ""
+
+#: gresource/gtk/AppWindow.ui
+msgid "Hello, World!"
+msgstr ""
+
+#: gresource/Gtk/AppWindow.ui
+msgid "Send Notification"
+msgstr ""
+
+msgid "Use dark theme"
 msgstr ""

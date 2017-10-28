@@ -14,9 +14,6 @@ msgstr ""
 msgid "Sample Application"
 msgstr "Демонстрационное Приложение"
 
-msgid "Hello, World!"
-msgstr "Привет, Мир!"
-
 msgid "Preferences"
 msgstr "Параметры"
 
@@ -31,3 +28,12 @@ msgstr "Краткое описание"
 
 msgid "A long description"
 msgstr "Длинное описание"
+
+msgid "Hello, World!"
+msgstr "Привет, Мир!"
+
+msgid "Send Notification"
+msgstr "Отправить Оповещение"
+
+msgid "Use dark theme"
+msgstr "Использовать тёмную тему"
