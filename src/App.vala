@@ -166,6 +166,7 @@ class App : Gtk.Application {
       preferences_win.application = this;
       preferences_win.modal = true;
       preferences_win.attached_to = this.win;
+      preferences_win.transient_for = this.win;
       preferences_win_shown = true;
 
       var switch_dark_theme = builder.get_object("switchDarkTheme") as Gtk.Switch;
