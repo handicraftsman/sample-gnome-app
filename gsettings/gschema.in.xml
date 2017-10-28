@@ -1,0 +1,10 @@
+<schemalist>
+  <schema id="@id@" path="@path@" gettext-domain="@name@">
+
+    <key type="b" name="prefers-dark-theme">
+      <default>false</default>
+      <summary>Set to true if you want vedit to use dark theme</summary>
+    </key>
+    
+  </schema>
+</schemalist>

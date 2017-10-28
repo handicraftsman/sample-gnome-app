@@ -1,0 +1,6 @@
+enum Exitcodes {
+  SUCCESS,
+  UNKNOWN_ERROR,
+  COMMAND_LINE_ERROR,
+  RESOURCE_ERROR
+}

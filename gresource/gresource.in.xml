@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <!--
+    Instead of using constant value i used meson's `configure_file()`
+    function to change configurable values automatically
+  -->
+  <gresource prefix="@path@">
+    <file>hello.txt</file>
+    <file>gtk/menus.ui</file>
+    <file>gtk/App.ui</file>
+  </gresource>
+</gresources>

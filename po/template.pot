@@ -1,0 +1,27 @@
+#: meson.build
+msgid "Sample Application"
+msgstr ""
+
+#: gresource/gtk/AppWindow.ui
+msgid "Hello, World!"
+msgstr ""
+
+#: gresource/gtk/menus.ui
+msgid "Preferences"
+msgstr ""
+
+#: gresource/gtk/menus.ui
+msgid "About"
+msgstr ""
+
+#: gresource/gtk/menus.ui
+msgid "Quit"
+msgstr ""
+
+#: src/AppWindow.vala
+msgid "Short summary"
+msgstr ""
+
+#: src/AppWindow.vala
+msgid "A long description"
+msgstr ""
