@@ -1,0 +1,6 @@
+mkdir build
+cd build
+meson ..
+meson configure . -D prefix=/usr/ # Or your own prefix. /usr/local/ DOES NOT WORK!
+ninja
+sudo ninja install
