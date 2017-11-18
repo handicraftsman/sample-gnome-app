@@ -25,6 +25,7 @@ conf.set('full_name', 'Sample Application') # May be translated by gettext
 conf.set('version', meson.project_version())
 conf.set('id', 'org.johndoe.SampleApp')
 conf.set('path', '/org/johndoe/SampleApp/')
+conf.set('prefix', get_option('prefix'))
 
 '''
 Change this array to set global dependencies.

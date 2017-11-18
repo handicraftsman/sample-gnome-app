@@ -1,15 +1,16 @@
 add_global_arguments(
-  ['-DGETTEXT_PACKAGE="sample"'],
+  ['-DGETTEXT_PACKAGE="' + conf.get('name') + '"'],
   language: 'c'
 )
 
 executable(
-  'sample', # Executable name
+  conf.get('name').to_lower(), # Executable name
   [
-    # Sources.
+    # Sources
     'Exitcodes.vala',
     'App.vala',
     'AppWindow.vala',
+    'SettingsEngine.vala',
 
     # Configuration
     configure_file(

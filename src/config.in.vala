@@ -4,4 +4,5 @@ class Config {
   public const string version = "@version@";
   public const string id = "@id@";
   public const string path = "@path@";
+  public const string prefix = "@prefix@";
 }

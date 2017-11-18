@@ -8,7 +8,6 @@ class App : Gtk.Application {
   /*
    * Instance variables
    */
-  private Settings settings;
   public AppWindow win;
   public bool preferences_win_shown = false;
   SimpleAction av_quit;
@@ -99,10 +98,6 @@ class App : Gtk.Application {
   public override void activate() {
     this.hold();
 
-    // Create the settings
-    this.settings = new Settings(Config.id);
-    this.dark_theme = this.dark_theme;
-
     // Create the main window
     this.win = new AppWindow(this);
     this.win.show_all();
@@ -133,13 +128,14 @@ class App : Gtk.Application {
   // Main function
   public static int main(string[] args) {
     Notify.init(Config.full_name);
-    Intl.bindtextdomain(Config.name, "/usr/local/share/locale/");
+    Intl.bindtextdomain(Config.name, Config.prefix + "/share/locale/");
     Intl.bind_textdomain_codeset(Config.name, "UTF-8");
     Intl.textdomain(Config.name);
     Intl.setlocale(LocaleCategory.ALL, "");
 	  Environment.set_prgname(Config.name);
     Environment.set_application_name(Config.name);
     app = new App();
+    SettingsEngine.init();
     return app.run(args);
   }
 
@@ -162,7 +158,7 @@ class App : Gtk.Application {
       var builder = new Gtk.Builder.from_resource(Config.path+"gtk/App.ui");
 
       preferences_win = builder.get_object("winPreferences") as Gtk.Dialog;
-      preferences_win.destroy.connect(() => {preferences_win_shown = false;});
+      preferences_win.destroy.connect(() => { preferences_win_shown = false; });
       preferences_win.application = this;
       preferences_win.modal = true;
       preferences_win.attached_to = this.win;
@@ -170,8 +166,8 @@ class App : Gtk.Application {
       preferences_win_shown = true;
 
       var switch_dark_theme = builder.get_object("switchDarkTheme") as Gtk.Switch;
-      switch_dark_theme.set_state(this.dark_theme);
-      switch_dark_theme.state_set.connect((val) => { return this.conf_set_dark_theme(val); });
+      switch_dark_theme.set_state(SettingsEngine.dark_theme);
+      switch_dark_theme.state_set.connect((val) => { SettingsEngine.dark_theme = val; return val; });
       preferences_win.show_all();
     }
     this.release();
@@ -206,31 +202,6 @@ class App : Gtk.Application {
       print(@"Error: $(e.message)\n");
     }
     this.release();
-  }
-
-  /*
-   * Configuration methods
-   */
-
-  private bool conf_set_dark_theme(bool val) {
-    this.hold();
-    this.dark_theme = val;
-    this.release();
-    return val;
-  }
-
-  /*
-   * Utilities
-   */
-
-  public bool dark_theme {
-    get {
-      return this.settings.get_boolean("prefers-dark-theme");
-    }
-    set {
-      this.settings.set_boolean("prefers-dark-theme", value);
-      Gtk.Settings.get_default().gtk_application_prefer_dark_theme = value;
-    }
   }
 
 }
