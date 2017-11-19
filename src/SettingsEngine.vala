@@ -3,7 +3,7 @@ class SettingsEngine {
 
   public static void init() {
     settings = new Settings(Config.id);
-    dark_theme = dark_theme;
+    Gtk.Settings.get_default().gtk_application_prefer_dark_theme = dark_theme;
   }
 
   public static bool dark_theme {

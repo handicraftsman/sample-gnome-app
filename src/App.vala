@@ -98,6 +98,9 @@ class App : Gtk.Application {
   public override void activate() {
     this.hold();
 
+    // Init the settings engine
+    SettingsEngine.init();
+   
     // Create the main window
     this.win = new AppWindow(this);
     this.win.show_all();
@@ -135,7 +138,6 @@ class App : Gtk.Application {
 	  Environment.set_prgname(Config.name);
     Environment.set_application_name(Config.name);
     app = new App();
-    SettingsEngine.init();
     return app.run(args);
   }
 
